@@ -31,6 +31,14 @@ Note: The intro video plays best on the production build because it
 uses the MP4 format. On npm run dev, some browsers may not play the WebM
 version.
 
+## Vercel deployment
+
+Import the repository into Vercel and use the default `npm run build` command.
+Keep the output directory on **Automatic** so Vercel can use Nitro's server
+output. Set `VITE_API_URL` in the Vercel project environment variables to the
+production API URL. The static SPA shell is only prerendered for the separate
+Plesk build (`npm run build:plesk`).
+
 ## Plesk static deployment
 
 The Plesk release is a static SPA, served from the domain's `httpdocs`; it does

@@ -14,11 +14,13 @@ export default defineConfig(({ command, mode }) => ({
       // src/server.ts wraps TanStack Start's server entry with our SSR error page.
       server: { entry: "server" },
       spa: {
-        enabled: true,
-        prerender: {
-          outputPath: "/_shell",
-          crawlLinks: false,
-        },
+        enabled: mode === "plesk",
+        ...(mode === "plesk" && {
+          prerender: {
+            outputPath: "/_shell",
+            crawlLinks: false,
+          },
+        }),
       },
       importProtection: {
         behavior: "error",
