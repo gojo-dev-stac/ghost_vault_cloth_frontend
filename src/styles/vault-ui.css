@@ -1,0 +1,481 @@
+/* vault-ui.css — shared editorial pieces for the signed-in pages (Vault, My Vault,
+   Checkout) and the site header, in the same language as campaign.css / auth.css:
+   index rows, gold hairlines, Bebas display with a Cormorant gold em, bordered
+   panels and CTAs with a gold edge bar. All classes are scoped under .vsite so the
+   campaign and auth screens keep their own rules. */
+
+.vsite {
+  --v-ink: #f2f0e9;
+  --v-muted: #aaa69a;
+  --v-gold: #c9a24a;
+  --v-gold-soft: #e7ce88;
+  --v-crimson: #a43b48;
+  --v-cta-ink: #f1dfb9;
+  --v-cta-line: rgb(207 168 91 / 55%);
+  --v-hairline: rgb(226 220 203 / 14%);
+  color: var(--v-ink);
+}
+
+.vsite a:focus-visible,
+.vsite button:focus-visible,
+.vsite input:focus-visible,
+.vsite textarea:focus-visible {
+  outline: 1px solid var(--v-gold);
+  outline-offset: 4px;
+}
+
+/* --- page header block (eyebrow + index row + display title) --- */
+
+.vsite-head {
+  position: relative;
+  z-index: 1;
+}
+
+.vsite-index {
+  display: flex;
+  justify-content: space-between;
+  color: var(--v-muted);
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.vsite-index span:first-child {
+  color: var(--v-ink);
+}
+
+.vsite-rule {
+  display: block;
+  width: 44px;
+  height: 1px;
+  margin: 24px 0 22px;
+  background: var(--v-gold);
+}
+
+.vsite-eyebrow {
+  margin: 0;
+  color: #c3b9a3;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.vsite-title {
+  margin: 20px 0 0;
+  font-family: "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(56px, 9vw, 128px);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 0.86;
+  text-transform: uppercase;
+}
+
+.vsite-title em {
+  color: var(--v-gold);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  text-shadow: 0 0 48px rgb(201 162 74 / 14%);
+}
+
+.vsite-lede {
+  max-width: 430px;
+  margin: 22px 0 0;
+  color: rgb(242 240 233 / 72%);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.vsite-head-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.vsite-head-row .vsite-lede {
+  margin-bottom: 8px;
+}
+
+/* --- bordered panel --- */
+
+.vsite-panel {
+  position: relative;
+  border: 1px solid var(--v-hairline);
+  border-radius: 18px;
+  background:
+    radial-gradient(ellipse at 92% 6%, rgb(201 162 74 / 8%), transparent 42%),
+    linear-gradient(140deg, rgb(37 31 23 / 78%), rgb(15 14 13 / 94%));
+  box-shadow:
+    0 35px 100px rgb(0 0 0 / 30%),
+    inset 0 1px 0 rgb(255 255 255 / 5%);
+  backdrop-filter: blur(16px) saturate(130%);
+}
+
+.vsite-panel-title {
+  margin: 0;
+  font-family: "Bebas Neue", Impact, sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.vsite-panel-title em {
+  color: var(--v-gold);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+/* --- CTAs --- */
+
+.vsite-cta,
+.vsite-cta-quiet {
+  position: relative;
+  display: inline-flex;
+  min-height: 52px;
+  padding: 0 20px 0 22px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  overflow: hidden;
+  border: 1px solid var(--v-cta-line);
+  border-radius: 10px;
+  background: linear-gradient(112deg, rgb(36 30 22 / 96%), rgb(15 14 13 / 93%));
+  box-shadow:
+    inset 0 1px 0 rgb(255 242 208 / 8%),
+    0 16px 42px rgb(0 0 0 / 26%);
+  color: var(--v-cta-ink);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  isolation: isolate;
+  transition:
+    border-color 220ms ease,
+    background 220ms ease,
+    transform 220ms ease;
+}
+
+.vsite-cta::before,
+.vsite-cta-quiet::before {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: linear-gradient(180deg, #f4d690, #987229);
+  content: "";
+}
+
+.vsite-cta::after,
+.vsite-cta-quiet::after {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 25%, rgb(210 169 87 / 15%) 50%, transparent 75%);
+  content: "";
+  pointer-events: none;
+  transform: translateX(-110%);
+  transition: transform 480ms ease;
+}
+
+.vsite-cta:hover:not(:disabled),
+.vsite-cta-quiet:hover {
+  border-color: #d9b66e;
+  background: linear-gradient(112deg, rgb(43 34 22 / 98%), rgb(20 18 15 / 96%));
+  transform: translateY(-2px);
+}
+
+.vsite-cta:hover:not(:disabled)::after,
+.vsite-cta-quiet:hover::after {
+  transform: translateX(110%);
+}
+
+.vsite-cta:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.vsite-cta > span,
+.vsite-cta-quiet > span {
+  position: relative;
+  z-index: 1;
+}
+
+.vsite-cta-arrow {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  place-items: center;
+  color: #e8c980;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1;
+  transition: transform 220ms ease;
+}
+
+.vsite-cta:hover:not(:disabled) .vsite-cta-arrow {
+  transform: translate(2px, -2px);
+}
+
+.vsite-cta-quiet {
+  justify-content: center;
+  border-color: rgb(201 162 74 / 45%);
+  background: rgb(201 162 74 / 4%);
+  box-shadow: none;
+  color: var(--v-gold-soft);
+}
+
+.vsite-cta-quiet:hover {
+  background: rgb(201 162 74 / 12%);
+}
+
+/* --- fields (checkout / forms) --- */
+
+.vsite-field {
+  width: 100%;
+  height: 50px;
+  padding: 0 16px;
+  border: 1px solid rgb(226 220 203 / 16%);
+  border-radius: 10px;
+  background: rgb(13 12 11 / 72%);
+  color: var(--v-ink);
+  font-size: 14px;
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    translate 200ms ease;
+}
+
+textarea.vsite-field {
+  height: auto;
+  min-height: 160px;
+  padding: 14px 16px;
+  resize: vertical;
+}
+
+.vsite-field::placeholder {
+  color: rgb(170 166 154 / 60%);
+}
+
+.vsite-field:focus {
+  outline: none;
+  translate: 0 -2px;
+  border-color: rgb(201 162 74 / 75%);
+  box-shadow:
+    0 18px 44px -22px rgb(201 162 74 / 55%),
+    inset 0 0 0 1px rgb(201 162 74 / 22%);
+}
+
+.vsite-field-label {
+  display: block;
+  margin-bottom: 8px;
+  color: rgb(170 166 154 / 85%);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  transition: color 180ms ease;
+}
+
+.vsite-field-wrap:focus-within .vsite-field-label {
+  color: var(--v-gold);
+}
+
+/* --- index rows (orders, stats) --- */
+
+.vsite-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 20px 4px;
+  border-bottom: 1px solid rgb(226 220 203 / 10%);
+  transition: background 200ms ease;
+}
+
+.vsite-row:last-child {
+  border-bottom: 0;
+}
+
+.vsite-row:hover {
+  background: linear-gradient(90deg, rgb(201 162 74 / 6%), transparent 65%);
+}
+
+.vsite-row-index {
+  flex: 0 0 auto;
+  width: 42px;
+  color: rgb(201 162 74 / 75%);
+  font-size: 10px;
+  letter-spacing: 0.13em;
+}
+
+.vsite-stat-label {
+  margin: 0;
+  color: var(--v-muted);
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+}
+
+.vsite-stat-value {
+  margin: 10px 0 0;
+  font-family: "Bebas Neue", Impact, sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/* --- header --- */
+
+.vsite-nav {
+  transition:
+    background 300ms ease,
+    border-color 300ms ease,
+    box-shadow 300ms ease,
+    backdrop-filter 300ms ease;
+}
+
+.vsite-nav.is-solid {
+  border-bottom: 1px solid rgb(201 162 74 / 22%);
+  background: linear-gradient(180deg, rgb(16 14 11 / 96%), rgb(11 10 9 / 92%));
+  box-shadow: 0 18px 50px -30px rgb(0 0 0 / 90%);
+  backdrop-filter: blur(18px) saturate(140%);
+}
+
+.vsite-nav::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(201 162 74 / 45%), transparent);
+  content: "";
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.vsite-nav.is-solid::after {
+  opacity: 1;
+}
+
+.vsite-nav-link {
+  position: relative;
+  padding: 6px 0;
+  color: rgb(242 240 233 / 72%);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  transition: color 200ms ease;
+}
+
+.vsite-nav-link::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--v-gold), #e8cc83);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.vsite-nav-link:hover {
+  color: var(--v-ink);
+}
+
+.vsite-nav-link:hover::after,
+.vsite-nav-link.is-active::after {
+  transform: scaleX(1);
+}
+
+.vsite-nav-link.is-active {
+  color: var(--v-gold-soft);
+}
+
+.vsite-nav-cta {
+  display: inline-flex;
+  min-height: 38px;
+  padding: 0 18px;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgb(201 162 74 / 55%);
+  border-radius: 999px;
+  background: rgb(201 162 74 / 6%);
+  color: var(--v-gold-soft);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  transition:
+    background 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.vsite-nav-cta:hover {
+  border-color: var(--v-gold);
+  background: rgb(201 162 74 / 14%);
+  box-shadow: 0 0 28px rgb(201 162 74 / 18%);
+}
+
+.vsite-nav-iconbtn {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: rgb(242 240 233 / 72%);
+  transition:
+    color 200ms ease,
+    border-color 200ms ease,
+    background 200ms ease;
+}
+
+.vsite-nav-iconbtn:hover {
+  border-color: rgb(201 162 74 / 40%);
+  background: rgb(201 162 74 / 8%);
+  color: var(--v-gold-soft);
+}
+
+.vsite-nav-iconbtn.is-danger:hover {
+  border-color: rgb(164 59 72 / 50%);
+  background: rgb(164 59 72 / 12%);
+  color: #d76a78;
+}
+
+@media (max-width: 640px) {
+  .vsite-head-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .vsite-title {
+    font-size: clamp(52px, 15vw, 80px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vsite *,
+  .vsite *::before,
+  .vsite *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
