@@ -8,7 +8,7 @@ import { useProducts } from "@/hooks/useProducts";
 import "@/styles/campaign.css";
 
 const FRAME_COUNT = 300;
-const FRAME_CACHE_LIMIT = 14;
+const FRAME_CACHE_LIMIT = 18;
 // Reference footage for the finale preview. Replace with the commissioned GHOST film before launch.
 const FINALE_VIDEO_SRC =
   "https://strvid.nyc3.cdn.digitaloceanspaces.com/motionsite/summit-hero-1.mp4";
@@ -190,20 +190,35 @@ export function StreetwearCampaignPage() {
       recentlyUsed.push(index);
 
       while (recentlyUsed.length > FRAME_CACHE_LIMIT) {
-        const oldest = recentlyUsed.shift();
-        if (oldest === undefined) break;
+        const oldestPosition = recentlyUsed.findIndex(
+          (index) => index !== currentFrame && frames[index]?.complete,
+        );
+        if (oldestPosition === -1) break;
+        const [oldest] = recentlyUsed.splice(oldestPosition, 1);
+        if (oldest === undefined) continue;
         const image = frames[oldest];
-        if (oldest !== currentFrame && image?.complete) frames[oldest] = undefined;
-        else {
-          recentlyUsed.push(oldest);
-          break;
+        if (image && !image.complete) {
+          image.onload = null;
+          image.onerror = null;
+          image.src = "";
         }
+        frames[oldest] = undefined;
       }
     };
 
     const drawFrame = () => {
       renderQueued = false;
-      const image = frames[currentFrame];
+      let frameToDraw = currentFrame;
+      let image = frames[frameToDraw];
+      if (!image?.complete || !image.naturalWidth) {
+        const nearbyFrames = recentlyUsed
+          .filter((index) => Math.abs(index - currentFrame) <= 2)
+          .sort((a, b) => Math.abs(a - currentFrame) - Math.abs(b - currentFrame));
+        frameToDraw =
+          nearbyFrames.find((index) => frames[index]?.complete && frames[index]?.naturalWidth) ??
+          displayedFrame;
+        image = frames[frameToDraw];
+      }
       if (!image?.complete || !image.naturalWidth) return;
 
       const bounds = canvas.getBoundingClientRect();
@@ -235,22 +250,23 @@ export function StreetwearCampaignPage() {
       context.fillStyle = glow;
       context.fillRect(0, 0, width, height);
 
-      const scale =
-        window.innerWidth <= 640
-          ? Math.max(width / image.naturalWidth, (height / image.naturalHeight) * 0.78)
-          : Math.min(width / image.naturalWidth, height / image.naturalHeight);
+      const mobile = window.innerWidth <= 640;
+      const frameTop = mobile ? height * 0.42 : 0;
+      const frameHeight = mobile ? height * 0.42 : height;
+      const frameWidth = mobile ? width * 0.94 : width;
+      const scale = Math.min(frameWidth / image.naturalWidth, frameHeight / image.naturalHeight);
       const drawWidth = image.naturalWidth * scale;
       const drawHeight = image.naturalHeight * scale;
       context.drawImage(
         image,
         (width - drawWidth) / 2,
-        (height - drawHeight) / 2,
+        frameTop + (frameHeight - drawHeight) / 2,
         drawWidth,
         drawHeight,
       );
-      displayedFrame = currentFrame;
+      displayedFrame = frameToDraw;
       if (counterRef.current) {
-        counterRef.current.textContent = `${String(currentFrame + 1).padStart(3, "0")} / ${FRAME_COUNT}`;
+        counterRef.current.textContent = `${String(frameToDraw + 1).padStart(3, "0")} / ${FRAME_COUNT}`;
       }
     };
 
@@ -260,45 +276,51 @@ export function StreetwearCampaignPage() {
       requestAnimationFrame(drawFrame);
     };
 
-    const requestFrame = (index: number) => {
+    const requestFrame = (index: number, current = false) => {
       if (index < 0 || index >= FRAME_COUNT) return;
       const existing = frames[index];
       if (existing) {
+        if (current) existing.fetchPriority = "high";
         remember(index);
-        if (index === currentFrame && existing.complete) scheduleDraw();
+        if (Math.abs(index - currentFrame) <= 2 && existing.complete) scheduleDraw();
         return;
       }
 
       const image = new Image();
       frames[index] = image;
       image.decoding = "async";
+      image.fetchPriority = current ? "high" : "low";
       image.onload = () => {
-        if (disposed) return;
+        if (disposed || frames[index] !== image) return;
         remember(index);
         setFilmReady(true);
-        if (index === currentFrame) scheduleDraw();
+        if (Math.abs(index - currentFrame) <= 2) scheduleDraw();
       };
       image.onerror = () => {
-        if (disposed) return;
+        if (disposed || frames[index] !== image) return;
         frames[index] = undefined;
         setFilmError(`Campaign frame ${String(index + 1).padStart(3, "0")} could not be loaded.`);
       };
       image.src = frameUrl(index);
     };
 
-    const primeAround = (index: number) => {
-      requestFrame(index);
-      requestFrame(index - 1);
-      requestFrame(index + 1);
-      requestFrame(index + 2);
+    const primeAround = (index: number, direction: number) => {
+      requestFrame(index, true);
+      for (let offset = 1; offset <= 8; offset += 1) {
+        requestFrame(index + offset * direction);
+      }
+      for (let offset = 1; offset <= 3; offset += 1) {
+        requestFrame(index - offset * direction);
+      }
     };
 
     const updateScroll = () => {
       scrollQueued = false;
       const nextFrame = updateFromScroll();
       if (nextFrame === undefined) return;
+      const direction = nextFrame < currentFrame ? -1 : 1;
       currentFrame = nextFrame;
-      primeAround(currentFrame);
+      primeAround(currentFrame, direction);
       if (displayedFrame === currentFrame && counterRef.current) {
         counterRef.current.textContent = `${String(currentFrame + 1).padStart(3, "0")} / ${FRAME_COUNT}`;
       }
@@ -310,7 +332,7 @@ export function StreetwearCampaignPage() {
       requestAnimationFrame(updateScroll);
     };
 
-    requestFrame(0);
+    requestFrame(0, true);
     scheduleScrollUpdate();
     window.addEventListener("scroll", scheduleScrollUpdate, { passive: true });
     window.addEventListener("resize", scheduleDraw);

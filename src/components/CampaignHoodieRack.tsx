@@ -97,6 +97,7 @@ export function CampaignHoodieRack({ products, isLoading, isError }: CampaignHoo
           <div className="campaign-rack-track">
             <div className="campaign-rack-content">
               <div className="campaign-rack-rail" aria-hidden="true" />
+              <span className="campaign-rack-end-space" aria-hidden="true" />
               {hoodies.map((product, index) => {
                 const availableSizes = SIZES.filter((size) => product.sizes[size] > 0);
                 const sideImage = getLocalHoodieImage(product, "side");
@@ -164,6 +165,7 @@ export function CampaignHoodieRack({ products, isLoading, isError }: CampaignHoo
                   </button>
                 );
               })}
+              <span className="campaign-rack-end-space" aria-hidden="true" />
             </div>
           </div>
         ) : (

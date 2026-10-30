@@ -915,6 +915,10 @@
   gap: clamp(0px, 0.15vw, 2px);
 }
 
+.campaign-rack-end-space {
+  display: none;
+}
+
 .campaign-rack-rail {
   position: absolute;
   z-index: 1;
@@ -2362,15 +2366,32 @@
     font-size: clamp(68px, 16vw, 104px);
   }
   .campaign-film-copy {
-    top: 55%;
+    top: 15%;
     left: 7vw;
-    width: min(420px, 80vw);
+    width: min(420px, 86vw);
+    transform: none;
+  }
+  .campaign-film-shade {
+    background: linear-gradient(
+      180deg,
+      rgb(7 6 5 / 92%) 0%,
+      rgb(7 6 5 / 78%) 25%,
+      rgb(7 6 5 / 12%) 48%,
+      rgb(7 6 5 / 12%) 76%,
+      rgb(7 6 5 / 70%) 100%
+    );
   }
   .campaign-film-copy h2 {
-    font-size: clamp(55px, 13vw, 78px);
+    margin-top: 12px;
+    font-size: clamp(45px, 11vw, 58px);
   }
   .campaign-film-description {
-    max-width: 300px;
+    max-width: 290px;
+    margin: 10px 0 14px;
+    font-size: 12px;
+  }
+  .campaign-film-copy .campaign-primary-cta {
+    min-height: 44px;
   }
   .campaign-film-meta {
     right: 7vw;
@@ -2452,10 +2473,17 @@
   }
   .campaign-rack-track {
     padding: 40px 2px 10px;
+    scroll-padding-inline: 18px;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
   }
   .campaign-rack-content {
     justify-content: flex-start;
     gap: 0;
+  }
+  .campaign-rack-end-space {
+    display: block;
+    flex: 0 0 28px;
   }
   .campaign-rack-rail {
     top: -20px;
