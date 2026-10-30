@@ -165,7 +165,10 @@ export function CampaignHoodieRack({ products, isLoading, isError }: CampaignHoo
                   </button>
                 );
               })}
-              <span className="campaign-rack-end-space" aria-hidden="true" />
+              <span
+                className="campaign-rack-end-space campaign-rack-end-space-last"
+                aria-hidden="true"
+              />
             </div>
           </div>
         ) : (
