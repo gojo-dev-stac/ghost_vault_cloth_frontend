@@ -2492,7 +2492,13 @@
     top: -20px;
   }
   .campaign-rack-piece {
-    flex: 0 0 clamp(138px, 42vw, 178px);
+    flex: 0 0 clamp(126px, 36vw, 150px);
+  }
+  .campaign-rack-suspension {
+    height: 32px;
+  }
+  .campaign-rack-suspension::before {
+    height: 30px;
   }
   .campaign-rack-hanger {
     width: 70px;
