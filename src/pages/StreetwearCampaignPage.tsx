@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Play, RotateCw, Volume2, VolumeX, X } from "lucide-react";
-import { GhostLogo } from "@/components/GhostLogo";
+import { Footer } from "@/components/Footer";
 import { CampaignHoodieRack } from "@/components/CampaignHoodieRack";
 import { ProductGrid } from "@/components/ProductGrid";
 import { useProducts } from "@/hooks/useProducts";
@@ -831,56 +831,7 @@ export function StreetwearCampaignPage() {
         </section>
       </div>
 
-      <footer className="campaign-footer">
-        <div className="campaign-footer-top">
-          <div>
-            <p className="campaign-footer-kicker">GHOST / COLLECTION 01</p>
-            <p className="campaign-footer-statement">
-              Stay in
-              <br />
-              <em>motion.</em>
-            </p>
-          </div>
-          <div className="campaign-footer-aside">
-            <p>
-              Built with intention.
-              <br />
-              Designed for movement.
-            </p>
-            <a href="#top" className="campaign-footer-return">
-              Back to top <span aria-hidden="true">↑</span>
-            </a>
-          </div>
-        </div>
-        <div className="campaign-footer-main">
-          <div className="campaign-footer-brand">
-            <GhostLogo className="h-16 w-auto" />
-            <p>Independent by design.</p>
-          </div>
-          <nav aria-label="Footer navigation">
-            <div className="campaign-footer-nav-group">
-              <span>Explore</span>
-              <a href="#collection">Collection</a>
-              <a href="#story">Our story</a>
-            </div>
-            <div className="campaign-footer-nav-group">
-              <span>Connect</span>
-              <Link to="/contact">Contact</Link>
-              <Link to="/auth">Login</Link>
-            </div>
-            <div className="campaign-footer-nav-group">
-              <span>The Vault</span>
-              <Link to="/auth" search={{ mode: "signup" }}>
-                Request access <span aria-hidden="true">↗</span>
-              </Link>
-            </div>
-          </nav>
-        </div>
-        <div className="campaign-footer-legal">
-          <span>© 2026 GHOST</span>
-          <span>Made for the hours after dark.</span>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

@@ -13,6 +13,7 @@
   --v-cta-ink: #f1dfb9;
   --v-cta-line: rgb(207 168 91 / 55%);
   --v-hairline: rgb(226 220 203 / 14%);
+  overflow-x: clip;
   color: var(--v-ink);
 }
 

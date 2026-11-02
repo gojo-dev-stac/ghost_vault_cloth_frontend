@@ -1,67 +1,76 @@
-/** Footer.tsx — the shared site footer. */
+/** Footer.tsx — the shared campaign-style footer. */
 import { Link } from "@tanstack/react-router";
 import { GhostLogo } from "@/components/GhostLogo";
+import "@/styles/site-footer.css";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border mt-32">
-      <div className="max-w-7xl mx-auto px-6 md:px-10 py-16">
-        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
-          <div>
-            <GhostLogo className="h-24 drop-shadow-[0_0_20px_rgba(201,162,74,0.25)]" />
-            <p className="mt-3 text-xs tracking-[0.3em] uppercase text-muted-foreground">
-              Luxury Streetwear
-            </p>
+    <footer className="site-footer">
+      <div className="site-footer-top">
+        <div>
+          <p className="site-footer-kicker">GHOST / COLLECTION 01</p>
+          <p className="site-footer-statement">
+            Stay in
+            <br />
+            <em>motion.</em>
+          </p>
+        </div>
+        <div className="site-footer-aside">
+          <p>
+            Built with intention.
+            <br />
+            Designed for movement.
+          </p>
+          <button
+            type="button"
+            className="site-footer-return"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            Back to top <span aria-hidden="true">↑</span>
+          </button>
+        </div>
+      </div>
+
+      <div className="site-footer-main">
+        <div className="site-footer-brand">
+          <GhostLogo className="h-16 w-auto" />
+          <p>Independent by design.</p>
+        </div>
+        <nav aria-label="Footer navigation">
+          <div className="site-footer-nav-group">
+            <span>Explore</span>
+            <Link to="/collection">Collection</Link>
+            <a href="/collection#story">Our story</a>
           </div>
-          <div className="flex flex-col gap-2 text-xs text-muted-foreground">
-            <Link to="/contact" className="hover:text-foreground transition-colors tracking-wide">
-              Contact Us
-            </Link>
-            <Link to="/privacy" className="hover:text-foreground transition-colors tracking-wide">
-              Privacy Policy
-            </Link>
-            <Link to="/terms" className="hover:text-foreground transition-colors tracking-wide">
-              Terms &amp; Conditions
-            </Link>
-            <a
-              href="mailto:contact@ghost.studio"
-              className="hover:text-foreground transition-colors tracking-wide"
-            >
-              contact@ghost.studio
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-foreground transition-colors tracking-wide"
-            >
+          <div className="site-footer-nav-group">
+            <span>Connect</span>
+            <Link to="/contact">Contact</Link>
+            <a href="mailto:contact@ghost.studio">Email us</a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
               Instagram
             </a>
-            <a
-              href="https://tiktok.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-foreground transition-colors tracking-wide"
-            >
+            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">
               TikTok
             </a>
           </div>
-        </div>
-        <div className="mt-12 pt-6 border-t border-border/50">
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground/60">
-              © 2026 GHOST. All Rights Reserved.
-            </p>
-            <div className="flex gap-5 text-[10px] tracking-[0.2em] uppercase text-muted-foreground/60">
-              <Link to="/privacy" className="transition-colors hover:text-foreground">
-                Privacy
-              </Link>
-              <Link to="/terms" className="transition-colors hover:text-foreground">
-                Terms
-              </Link>
-            </div>
+          <div className="site-footer-nav-group">
+            <span>The Vault</span>
+            <Link to="/auth">Login</Link>
+            <Link to="/auth" search={{ mode: "signup" }}>
+              Request access <span aria-hidden="true">↗</span>
+            </Link>
           </div>
-        </div>
+          <div className="site-footer-nav-group">
+            <span>Legal</span>
+            <Link to="/privacy">Privacy policy</Link>
+            <Link to="/terms">Terms &amp; conditions</Link>
+          </div>
+        </nav>
+      </div>
+
+      <div className="site-footer-legal">
+        <span>© 2026 GHOST</span>
+        <span>Made for the hours after dark.</span>
       </div>
     </footer>
   );
