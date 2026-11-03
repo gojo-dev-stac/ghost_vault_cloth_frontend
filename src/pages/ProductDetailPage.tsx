@@ -14,6 +14,7 @@ import { fetchProduct, formatPrice, SIZES, type Product, type Size} from "@/lib/
 import { placeOrder} from "@/lib/orders";
 import { useAuth } from "@/hooks/useAuth";
 import { useCartStore } from "@/hooks/useCart";
+import "@/styles/product-detail.css";
 
 export function ProductDetailPage({ handle }: { handle: string }) {
   const { data: product, isLoading } = useQuery(productQueryOptions(handle));
@@ -79,25 +80,25 @@ function ProductView({ p }: { p: Product }) {
   };
 
   return (
-    <div className="min-h-screen">
-      <div className="relative max-w-7xl mx-auto px-5 md:px-10 pt-28 pb-20">
+    <div className="product-detail-page min-h-screen">
+      <div className="product-detail-main relative max-w-7xl mx-auto px-5 md:px-10 pt-28 pb-20">
         <div className="fog-layer opacity-60" />
-        <Link to={canBuy ? "/vault" : "/collection"} className="relative inline-flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase text-muted-foreground hover:text-gold mb-10">
+        <Link to={canBuy ? "/vault" : "/collection"} className="product-detail-back relative inline-flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase text-muted-foreground hover:text-gold mb-10">
           <ArrowLeft className="h-3.5 w-3.5" /> {canBuy ? "The Vault" : "The Drop"}
         </Link>
 
-        <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
-          <Tilt max={6}>
-            <div className="glass p-3 animate-rise">
-              <div className="aspect-[3/4] overflow-hidden bg-secondary">
-                {p.image_url && <img src={p.image_url} alt={p.name} className={`w-full h-full object-cover ${allSoldOut ? "grayscale" : ""}`} />}
+        <div className="product-detail-layout relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
+          <Tilt max={6} className="product-detail-tilt">
+            <div className="product-detail-frame glass p-3 animate-rise">
+              <div className="product-detail-image-wrap aspect-[3/4] overflow-hidden bg-secondary">
+                {p.image_url && <img src={p.image_url} alt={p.name} className={`product-detail-image w-full h-full object-cover ${allSoldOut ? "grayscale" : ""}`} />}
               </div>
             </div>
           </Tilt>
 
-          <div className="md:pt-8 animate-rise" style={{ animationDelay: "150ms" }}>
-            <p className="text-[11px] tracking-[0.5em] uppercase text-crimson mb-4">{p.category} · Members Only</p>
-            <h1 className="font-display text-6xl md:text-7xl tracking-wide text-gold-metal leading-none">{p.name}</h1>
+          <div className="product-detail-info md:pt-8 animate-rise" style={{ animationDelay: "150ms" }}>
+            <p className="product-detail-eyebrow mb-4">{p.category} · Members Only</p>
+            <h1 className="product-detail-title font-display tracking-wide text-gold-metal leading-none">{p.name}</h1>
             <p className="mt-6 text-3xl font-semibold text-chrome">{formatPrice(p.price)}</p>
 
             <div className="mt-6 flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase">
