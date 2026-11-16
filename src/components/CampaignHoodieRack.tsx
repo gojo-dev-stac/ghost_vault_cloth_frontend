@@ -5,29 +5,34 @@ import { formatPrice, SIZES, type Product } from "@/lib/products";
 
 const LOCAL_HOODIE_IMAGES: Record<string, { front: string; hanger: string; side: string }> = {
   "001": {
-    front: "/products/hoodie-001-front-transparent.webp",
-    hanger: "/products/hoodie-001-hanger.png",
-    side: "/products/hoodie-001-side.webp",
+    front: "/products/new_collection001.jpg",
+    hanger: "/products/new_collection001-hanger.png",
+    side: "/products/new_collection001-side.png",
   },
   "002": {
-    front: "/products/hoodie-002-front-transparent.webp",
-    hanger: "/products/hoodie-002-hanger.png",
-    side: "/products/hoodie-002-side.webp",
+    front: "/products/new_collection002.jpg",
+    hanger: "/products/new_collection002-hanger.png",
+    side: "/products/new_collection002-side.png",
   },
   "003": {
-    front: "/products/hoodie-003-front-transparent.webp",
-    hanger: "/products/hoodie-003-hanger.png",
-    side: "/products/hoodie-003-side.webp",
+    front: "/products/new_collection003.jpg",
+    hanger: "/products/new_collection003-hanger.png",
+    side: "/products/new_collection003-side.png",
   },
   "004": {
-    front: "/products/hoodie-004-front-transparent.webp",
-    hanger: "/products/hoodie-004-hanger.png",
-    side: "/products/hoodie-004-side.webp",
+    front: "/products/new_collection004.jpg",
+    hanger: "/products/new_collection004-hanger.png",
+    side: "/products/new_collection004-side.png",
   },
   "005": {
-    front: "/products/hoodie-005-front-transparent.webp",
-    hanger: "/products/hoodie-005-hanger.png",
-    side: "/products/hoodie-005-side.webp",
+    front: "/products/new_collection005.jpg",
+    hanger: "/products/new_collection005-hanger.png",
+    side: "/products/new_collection005-side.png",
+  },
+  "006": {
+    front: "/products/new_collection006.jpg",
+    hanger: "/products/new_collection006-hanger.png",
+    side: "/products/new_collection006-side.png",
   },
 };
 

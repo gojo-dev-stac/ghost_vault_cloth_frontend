@@ -569,14 +569,14 @@ export function StreetwearCampaignPage() {
               <div className="campaign-gallery" aria-label="Campaign imagery">
                 <a className="campaign-gallery-card" href="#collection" data-reveal>
                   <img
-                    src="/products/hoodie-001.webp"
-                    alt="GHOST Phantom Skull hoodie with spectral blue artwork"
+                    src="/products/new_collection001.jpg"
+                    alt="Black GHOST hoodie with tonal sleeve detailing"
                     loading="lazy"
                     decoding="async"
                   />
                   <span className="campaign-gallery-shade" aria-hidden="true" />
                   <span className="campaign-gallery-caption">
-                    <strong>Phantom Skull</strong>
+                    <strong>Tonal Discipline</strong>
                     <small>01 / Explore the drop</small>
                   </span>
                 </a>
@@ -587,14 +587,14 @@ export function StreetwearCampaignPage() {
                   data-reveal-delay="1"
                 >
                   <img
-                    src="/products/hoodie-002.jpg"
-                    alt="GHOST Trinity Skull hoodie with blue flame artwork"
+                    src="/products/new_collection002.jpg"
+                    alt="Black GHOST hoodie with gold embroidered details"
                     loading="lazy"
                     decoding="async"
                   />
                   <span className="campaign-gallery-shade" aria-hidden="true" />
                   <span className="campaign-gallery-caption">
-                    <strong>Trinity Skull</strong>
+                    <strong>Gold Crest</strong>
                     <small>02 / Explore the drop</small>
                   </span>
                 </a>
@@ -605,14 +605,14 @@ export function StreetwearCampaignPage() {
                   data-reveal-delay="2"
                 >
                   <img
-                    src="/products/hoodie-004.jpg"
-                    alt="GHOST Void Skull hoodie with electric blue skull artwork"
+                    src="/products/new_collection003.jpg"
+                    alt="Charcoal GHOST hoodie with a raised chest emblem"
                     loading="lazy"
                     decoding="async"
                   />
                   <span className="campaign-gallery-shade" aria-hidden="true" />
                   <span className="campaign-gallery-caption">
-                    <strong>Void Skull</strong>
+                    <strong>Washed Emblem</strong>
                     <small>03 / Explore the drop</small>
                   </span>
                 </a>
@@ -623,14 +623,14 @@ export function StreetwearCampaignPage() {
                   data-reveal-delay="3"
                 >
                   <img
-                    src="/products/hoodie-005.webp"
-                    alt="GHOST hoodie with a procession of spectral spirits"
+                    src="/products/new_collection004.jpg"
+                    alt="Black GHOST hoodie with a textured diagonal panel"
                     loading="lazy"
                     decoding="async"
                   />
                   <span className="campaign-gallery-shade" aria-hidden="true" />
                   <span className="campaign-gallery-caption">
-                    <strong>Ghost Spirits</strong>
+                    <strong>Electric Edge</strong>
                     <small>04 / Explore the drop</small>
                   </span>
                 </a>
