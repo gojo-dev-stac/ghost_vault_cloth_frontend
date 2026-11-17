@@ -226,7 +226,7 @@
   position: absolute;
   z-index: 2;
   top: 50%;
-  left: 10.5vw;
+  left: 7vw;
   width: min(430px, 40vw);
   transform: translateY(-32%);
 }

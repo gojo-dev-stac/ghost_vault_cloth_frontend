@@ -7,7 +7,7 @@ import { ProductGrid } from "@/components/ProductGrid";
 import { useProducts } from "@/hooks/useProducts";
 import "@/styles/campaign.css";
 
-const FRAME_COUNT = 300;
+const FRAME_COUNT = 210;
 const FRAME_CACHE_LIMIT = 18;
 // Reference footage for the finale preview. Replace with the commissioned GHOST film before launch.
 const FINALE_VIDEO_SRC =
@@ -44,17 +44,10 @@ const campaignMoments = [
     kicker: "Signature hoodie · 03",
     description: "A familiar form, reworked with intention.",
   },
-  {
-    until: 1.01,
-    title: "Made for",
-    accent: "after dark.",
-    kicker: "GHOST campaign · 2026",
-    description: "Designed for the streets. Built for movement.",
-  },
 ];
 
 function frameUrl(index: number) {
-  return `/campaign/frames/ezgif-frame-${String(index + 1).padStart(3, "0")}.webp`;
+  return `/campaign/frames/ezgif-frame-${String(index + 1).padStart(3, "0")}.webp?v=3`;
 }
 
 export function StreetwearCampaignPage() {
@@ -174,6 +167,7 @@ export function StreetwearCampaignPage() {
       setFilmError("The campaign film could not be initialized in this browser.");
       return;
     }
+    context.imageSmoothingQuality = "high";
 
     const frames: Array<HTMLImageElement | undefined> = new Array(FRAME_COUNT);
     const recentlyUsed: number[] = [];
@@ -254,13 +248,16 @@ export function StreetwearCampaignPage() {
       const frameTop = mobile ? height * 0.42 : 0;
       const frameHeight = mobile ? height * 0.42 : height;
       const frameWidth = mobile ? width * 0.94 : width;
-      const scale = Math.min(frameWidth / image.naturalWidth, frameHeight / image.naturalHeight);
+      const scale = mobile
+        ? Math.min(frameWidth / image.naturalWidth, frameHeight / image.naturalHeight)
+        : Math.max(frameWidth / image.naturalWidth, frameHeight / image.naturalHeight);
       const drawWidth = image.naturalWidth * scale;
       const drawHeight = image.naturalHeight * scale;
+      const frameOffsetY = mobile ? 0 : (Math.min(bounds.height * 0.08, 64) + 20) * pixelRatio;
       context.drawImage(
         image,
         (width - drawWidth) / 2,
-        frameTop + (frameHeight - drawHeight) / 2,
+        frameTop + (frameHeight - drawHeight) / 2 + frameOffsetY,
         drawWidth,
         drawHeight,
       );
@@ -467,7 +464,10 @@ export function StreetwearCampaignPage() {
               </a>
             </div>
             <div className="campaign-film-meta" aria-hidden="true">
-              <span>GHOST · Chapter {String(momentIndex + 1).padStart(2, "0")} / 05</span>
+              <span>
+                GHOST · Chapter {String(momentIndex + 1).padStart(2, "0")} /{" "}
+                {String(campaignMoments.length).padStart(2, "0")}
+              </span>
               <span ref={counterRef}>001 / {FRAME_COUNT}</span>
             </div>
             {!filmReady && !filmError && (
@@ -569,7 +569,7 @@ export function StreetwearCampaignPage() {
               <div className="campaign-gallery" aria-label="Campaign imagery">
                 <a className="campaign-gallery-card" href="#collection" data-reveal>
                   <img
-                    src="/products/new_collection001.jpg"
+                    src="/products/new_collection001.webp"
                     alt="Black GHOST hoodie with tonal sleeve detailing"
                     loading="lazy"
                     decoding="async"
@@ -587,7 +587,7 @@ export function StreetwearCampaignPage() {
                   data-reveal-delay="1"
                 >
                   <img
-                    src="/products/new_collection002.jpg"
+                    src="/products/new_collection002.webp"
                     alt="Black GHOST hoodie with gold embroidered details"
                     loading="lazy"
                     decoding="async"
@@ -605,7 +605,7 @@ export function StreetwearCampaignPage() {
                   data-reveal-delay="2"
                 >
                   <img
-                    src="/products/new_collection003.jpg"
+                    src="/products/new_collection003.webp"
                     alt="Charcoal GHOST hoodie with a raised chest emblem"
                     loading="lazy"
                     decoding="async"
@@ -623,7 +623,7 @@ export function StreetwearCampaignPage() {
                   data-reveal-delay="3"
                 >
                   <img
-                    src="/products/new_collection004.jpg"
+                    src="/products/new_collection004.webp"
                     alt="Black GHOST hoodie with a textured diagonal panel"
                     loading="lazy"
                     decoding="async"

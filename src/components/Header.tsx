@@ -1,7 +1,7 @@
 /** Header.tsx — the fixed glass site header (logo, nav, bag), editorial edition. */
 import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
-import { LogOut, Shield, User } from "lucide-react";
+import { LogOut, Settings, Shield } from "lucide-react";
 import { ShoppingBag } from "@/components/ShoppingBag";
 import { signOut as endSession } from "@/lib/auth";
 import { useAuth } from "@/hooks/useAuth";
@@ -104,12 +104,12 @@ export function Header({ campaign = false }: { campaign?: boolean }) {
                 Contact
               </Link>
               <Link
-                to="/me"
-                className={`vsite-nav-link ${isActive("/me") ? "is-active" : ""}`}
-                aria-label="My Vault"
+                to="/settings"
+                className={`vsite-nav-link ${isActive("/settings") ? "is-active" : ""}`}
+                aria-label="Settings"
               >
-                <span className="hidden sm:inline">My Vault</span>
-                <User className="h-4 w-4 sm:hidden" />
+                <span className="hidden sm:inline">Settings</span>
+                <Settings className="h-4 w-4 sm:hidden" />
               </Link>
               {member?.isAdmin && (
                 <Link

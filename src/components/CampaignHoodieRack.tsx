@@ -5,34 +5,34 @@ import { formatPrice, SIZES, type Product } from "@/lib/products";
 
 const LOCAL_HOODIE_IMAGES: Record<string, { front: string; hanger: string; side: string }> = {
   "001": {
-    front: "/products/new_collection001.jpg",
-    hanger: "/products/new_collection001-hanger.png",
-    side: "/products/new_collection001-side.png",
+    front: "/products/new_collection001.webp",
+    hanger: "/products/new_collection001-hanger.webp",
+    side: "/products/new_collection001-side.webp",
   },
   "002": {
-    front: "/products/new_collection002.jpg",
-    hanger: "/products/new_collection002-hanger.png",
-    side: "/products/new_collection002-side.png",
+    front: "/products/new_collection002.webp",
+    hanger: "/products/new_collection002-hanger.webp",
+    side: "/products/new_collection002-side.webp",
   },
   "003": {
-    front: "/products/new_collection003.jpg",
-    hanger: "/products/new_collection003-hanger.png",
-    side: "/products/new_collection003-side.png",
+    front: "/products/new_collection003.webp",
+    hanger: "/products/new_collection003-hanger.webp",
+    side: "/products/new_collection003-side.webp",
   },
   "004": {
-    front: "/products/new_collection004.jpg",
-    hanger: "/products/new_collection004-hanger.png",
-    side: "/products/new_collection004-side.png",
+    front: "/products/new_collection004.webp",
+    hanger: "/products/new_collection004-hanger.webp",
+    side: "/products/new_collection004-side.webp",
   },
   "005": {
-    front: "/products/new_collection005.jpg",
-    hanger: "/products/new_collection005-hanger.png",
-    side: "/products/new_collection005-side.png",
+    front: "/products/new_collection005.webp",
+    hanger: "/products/new_collection005-hanger.webp",
+    side: "/products/new_collection005-side.webp",
   },
   "006": {
-    front: "/products/new_collection006.jpg",
-    hanger: "/products/new_collection006-hanger.png",
-    side: "/products/new_collection006-side.png",
+    front: "/products/new_collection006.webp",
+    hanger: "/products/new_collection006-hanger.webp",
+    side: "/products/new_collection006-side.webp",
   },
 };
 

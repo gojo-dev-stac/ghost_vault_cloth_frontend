@@ -21,6 +21,7 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedCheckoutRouteImport } from './routes/_authenticated/checkout'
 import { Route as AuthenticatedMeRouteImport } from './routes/_authenticated/me'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
 import { Route as AuthenticatedVaultRouteImport } from './routes/_authenticated/vault'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
 
@@ -83,6 +84,11 @@ const AuthenticatedMeRoute = AuthenticatedMeRouteImport.update({
   path: '/me',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedVaultRoute = AuthenticatedVaultRouteImport.update({
   id: '/vault',
   path: '/vault',
@@ -106,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AuthenticatedAdminRoute
   '/checkout': typeof AuthenticatedCheckoutRoute
   '/me': typeof AuthenticatedMeRoute
+  '/settings': typeof AuthenticatedSettingsRoute
   '/vault': typeof AuthenticatedVaultRoute
   '/product/$handle': typeof ProductHandleRoute
 }
@@ -121,6 +128,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AuthenticatedAdminRoute
   '/checkout': typeof AuthenticatedCheckoutRoute
   '/me': typeof AuthenticatedMeRoute
+  '/settings': typeof AuthenticatedSettingsRoute
   '/vault': typeof AuthenticatedVaultRoute
   '/product/$handle': typeof ProductHandleRoute
 }
@@ -138,6 +146,7 @@ export interface FileRoutesById {
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/checkout': typeof AuthenticatedCheckoutRoute
   '/_authenticated/me': typeof AuthenticatedMeRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
   '/_authenticated/vault': typeof AuthenticatedVaultRoute
   '/product/$handle': typeof ProductHandleRoute
 }
@@ -155,6 +164,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/checkout'
     | '/me'
+    | '/settings'
     | '/vault'
     | '/product/$handle'
   fileRoutesByTo: FileRoutesByTo
@@ -170,6 +180,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/checkout'
     | '/me'
+    | '/settings'
     | '/vault'
     | '/product/$handle'
   id:
@@ -186,6 +197,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin'
     | '/_authenticated/checkout'
     | '/_authenticated/me'
+    | '/_authenticated/settings'
     | '/_authenticated/vault'
     | '/product/$handle'
   fileRoutesById: FileRoutesById
@@ -289,6 +301,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedMeRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/vault': {
       id: '/_authenticated/vault'
       path: '/vault'
@@ -310,6 +329,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedCheckoutRoute: typeof AuthenticatedCheckoutRoute
   AuthenticatedMeRoute: typeof AuthenticatedMeRoute
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
   AuthenticatedVaultRoute: typeof AuthenticatedVaultRoute
 }
 
@@ -317,6 +337,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedCheckoutRoute: AuthenticatedCheckoutRoute,
   AuthenticatedMeRoute: AuthenticatedMeRoute,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
   AuthenticatedVaultRoute: AuthenticatedVaultRoute,
 }
 
